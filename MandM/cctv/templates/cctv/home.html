@@ -1,0 +1,86 @@
+{% include 'cctv/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  {% comment %} <meta http-equiv="refresh" content="1" > {% endcomment %}
+  {% comment %} <script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 2000);
+</script> {% endcomment %}
+<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 400px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+ 
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+<h1>Results for <b>{{ request.GET.q }}</b></h1>
+<br/><br/>
+
+{% for result in results %}
+
+{{result.title}}
+
+<br/>
+
+{{result.content}}
+<br/>
+
+{% endfor %}
+{% else %}
+No search results for this query
+{% endif %}
+{% endif %}
+
+    <br>
+    {% for camera in camera %}
+<div class="gallery">
+  <a href="full/{{camera.id}}">
+    <img src="{{camera.ip}}" alt="Cinque Terre" width="600" height="400">
+
+  </a>
+
+    <div class="desc"><b>{{camera.name}}</b></div>
+</div>
+{% endfor %}
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% include 'cctv/base.html' %}
+
+{% block content %}
+
+<center>
+<h1> Login</h1>
+
+{{ error }}<br />
+<form  method="POST" action="{% url 'cctv:login' %}">
+{% csrf_token %}
+
+Username: <br />
+<input type="text" name="username" />
+<br /><br />
+Password : <br />
+<input type="password" name="password" /><br /><br />
+
+<input class="btn btn-primary" type="submit" value="Login" />
+</form>
+</center>
+{% comment %} <center><a href="{% url 'signup' %}">Create new account !</a></center> {% endcomment %}
+{% endblock %}
+

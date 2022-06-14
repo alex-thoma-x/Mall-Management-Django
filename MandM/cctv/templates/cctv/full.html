@@ -1,0 +1,64 @@
+{% include 'cctv/base.html' %}
+
+{% block content %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+<script type="text/javascript">
+var auto_refresh = setInterval(
+function () {
+    $('#j').load('#j');
+}, 1000);
+</script>
+   </script>
+  </head>
+<style>
+.not-allowed {
+     pointer-events: auto! important;
+     cursor: not-allowed! important;
+}
+</style>
+  <body>
+
+<div id="jq">
+  <center>
+<img src="{{camera}}" alt="Cinque Terre" width="950" height="500">
+</center>
+</div>
+{% if request.user.is_superuser %}
+
+<center><br><a href='{% url 'cctv:destroy' camera_id %}' class="btn btn-danger" role="button" >Delete</a></center>
+
+
+
+
+
+    {% else %}
+
+  <center><br><button class="btn btn-danger btn-lg disabled not-allowed" role="button">Delete</button>
+  <br>
+      <p style="color:red"><b>Only superuser can delete this</b></p>
+  </center>
+{% endif %}
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+{% endblock %}
